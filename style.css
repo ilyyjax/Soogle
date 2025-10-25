@@ -1,0 +1,254 @@
+:root{
+  --bg-1: #ffffff;
+  --accent-1: linear-gradient(90deg, #7ce6d6, #8f6cff, #ff7fae);
+  --glass: rgba(255,255,255,0.6);
+  --muted: #5f6368;
+  --focus: rgba(66,133,244,0.18);
+  --shadow: 0 6px 18px rgba(16,24,40,0.08);
+  --radius: 12px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Reset-ish */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  background: radial-gradient(circle at 10% 10%, rgba(124,230,214,0.06), transparent 8%),
+              radial-gradient(circle at 90% 90%, rgba(255,127,174,0.03), transparent 10%),
+              #fbfdff;
+  color:#202124;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+}
+
+/* Page layout */
+.page{
+  width:100%;
+  max-width:980px;
+  margin:40px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:24px;
+}
+
+/* topbar */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.topbar .logo-small{height:28px}
+.top-links a{
+  margin-left:18px;
+  color:var(--muted);
+  text-decoration:none;
+  font-size:14px;
+}
+.top-links a:focus, .top-links a:hover{color:#1a73e8; outline:none; text-decoration:underline}
+
+/* hero */
+.hero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:48px 24px;
+  border-radius:20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
+  box-shadow: 0 10px 30px rgba(16,24,40,0.06);
+  position:relative;
+  overflow:visible;
+}
+
+/* big logo */
+.logo-large{
+  width:360px;
+  max-width:80%;
+  display:block;
+  transform-origin:center;
+  animation: logo-entrance 900ms cubic-bezier(.2,.9,.2,1);
+  filter:drop-shadow(0 8px 28px rgba(31,41,55,0.06));
+}
+
+/* logo entrance */
+@keyframes logo-entrance{
+  from{opacity:0; transform:translateY(-18px) scale(.98)}
+  to{opacity:1; transform:translateY(0) scale(1)}
+}
+
+/* hovering letters effect (subtle) */
+.logo-wrap::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:14%;
+  width:420px;
+  height:80px;
+  transform:translateX(-50%);
+  background: radial-gradient(closest-side, rgba(26,115,232,0.06), transparent 50%);
+  filter: blur(14px);
+  pointer-events:none;
+  animation: glow 6s infinite alternate;
+}
+@keyframes glow{
+  from{opacity:0.6; transform:translateX(-50%) translateY(0)}
+  to{opacity:0.2; transform:translateX(-50%) translateY(-8px)}
+}
+
+/* search */
+.search{
+  width:100%;
+  max-width:760px;
+  margin-top:22px;
+}
+.search-inner{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  background: rgba(255,255,255,0.9);
+  border-radius:999px;
+  padding:10px;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+  transition: box-shadow .25s ease, transform .18s;
+  border:1px solid rgba(32,33,36,0.06);
+}
+.search-inner:focus-within{
+  box-shadow: 0 10px 30px rgba(26,115,232,0.12);
+  transform: translateY(-2px);
+}
+.search input{
+  flex:1;
+  border:0;
+  outline:none;
+  font-size:18px;
+  padding:8px 6px;
+  background:transparent;
+  color: #202124;
+}
+.search input::placeholder{ color:#9aa0a6 }
+.btn-search{
+  border:0;
+  background:transparent;
+  padding:8px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  transition: transform .12s ease;
+}
+.btn-search:active{ transform:scale(.98) }
+.btn-search svg{ fill: #5f6368 }
+
+/* suggestions */
+.suggestions{
+  margin-top:8px;
+  font-size:13px;
+  color:var(--muted);
+  min-height:20px;
+  text-align:left;
+  width:100%;
+  max-width:760px;
+  padding-left:18px;
+}
+
+/* actions */
+.actions{
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+}
+.btn{
+  border-radius:6px;
+  padding:10px 14px;
+  border:1px solid rgba(32,33,36,0.06);
+  background: white;
+  cursor:pointer;
+  box-shadow: var(--shadow);
+  font-weight:600;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn:active{ transform:scale(.99) }
+.btn:hover{ box-shadow: 0 12px 30px rgba(16,24,40,0.08) }
+.btn-primary{
+  background: linear-gradient(90deg,#1a73e8,#2aa3ff);
+  color:white;
+  border:0;
+  box-shadow: 0 8px 26px rgba(42,163,255,0.12);
+}
+
+/* hint */
+.hint{
+  margin-top:12px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* footer */
+.footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 16px;
+  border-radius:12px;
+  background: rgba(255,255,255,0.7);
+  box-shadow: var(--shadow);
+  font-size:14px;
+  color:var(--muted);
+}
+.footer a{ color:var(--muted); text-decoration:none; margin-left:14px }
+.footer a:focus, .footer a:hover{ color:#1a73e8; text-decoration:underline }
+
+/* small screens */
+@media (max-width:640px){
+  .page{ margin:18px 12px }
+  .logo-large{ width:260px }
+  .top-links { display:none }
+  .actions{ flex-direction:column; width:100% }
+  .actions .btn{ width:100% }
+}
+
+/* accessibility helpers */
+.sr-only{ position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px) }
+.visually-hidden{ position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px) }
+
+/* small interactive sparkle on focus for input */
+.search input:focus{
+  box-shadow: 0 0 0 6px var(--focus);
+  border-radius:8px;
+}
+
+/* subtle animated floating blobs behind hero */
+.hero::before, .hero::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  filter: blur(36px);
+  opacity:0.12;
+  pointer-events:none;
+}
+.hero::before{
+  width:320px;
+  height:160px;
+  left:-80px;
+  top:-40px;
+  background: linear-gradient(90deg,#7ce6d6,#8f6cff);
+  animation: float1 8s ease-in-out infinite;
+}
+.hero::after{
+  width:260px;
+  height:260px;
+  right:-60px;
+  bottom:-80px;
+  background: linear-gradient(90deg,#ff7fae,#ffd36f);
+  animation: float2 9s ease-in-out infinite;
+}
+@keyframes float1{ 0%{transform:translateY(0)}50%{transform:translateY(-18px)}100%{transform:translateY(0)}}
+@keyframes float2{ 0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-22px) rotate(6deg)}100%{transform:translateY(0) rotate(0)}}
